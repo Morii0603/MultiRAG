@@ -1,5 +1,8 @@
+import os
 from io import BytesIO
+
 from minio import Minio
+
 import config
 
 
@@ -10,6 +13,21 @@ def get_minio_client() -> Minio:
         secret_key=config.MINIO_SECRET_KEY,
         secure=config.MINIO_SECURE,
     )
+
+
+def ensure_bucket():
+    client = get_minio_client()
+    if not client.bucket_exists(config.MINIO_BUCKET):
+        client.make_bucket(config.MINIO_BUCKET)
+
+
+def upload_document(file_path: str, object_name: str) -> str:
+    """上传原始文档至 MinIO upload_documents 文件夹，返回对象路径"""
+    ensure_bucket()
+    client = get_minio_client()
+    file_size = os.path.getsize(file_path)
+    client.fput_object(config.MINIO_BUCKET, object_name, file_path)
+    return object_name
 
 
 def upload_image(image, object_name: str) -> str:

@@ -14,7 +14,9 @@ dependencies = [
     "langchain-text-splitters>=1.1.2",
     "minio>=7.2.20",
     "pymilvus[model]>=2.6.12",
+    "pymysql>=1.1.2",
     "python-multipart>=0.0.26",
+    "sqlalchemy>=2.0.0",
     "uvicorn>=0.46.0",
 ]
 

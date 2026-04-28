@@ -27,7 +27,12 @@ MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
 MINIO_BUCKET = "knowledge-base"
 MINIO_SECURE = False
 
-
+# ========== MySQL 配置 ==========
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_PORT = 3306
+MYSQL_USER = "root"
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "123456")
+MYSQL_DATABASE = "knowledge_base"
 
 RERANK_API_KEY = os.getenv("RERANK_API_KEY")  # 重排序 API Key
 
